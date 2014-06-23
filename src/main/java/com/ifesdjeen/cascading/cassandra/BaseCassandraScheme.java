@@ -70,6 +70,10 @@ public abstract class BaseCassandraScheme extends Scheme<JobConf, RecordReader, 
       ConfigHelper.setInputSplitSize(conf, (Integer) this.settings.get("source.inputSplitSize"));
     }
 
+	if (this.settings.containsKey("cassandra.thrift.framed.size_mb")) {
+      ConfigHelper.setThriftFramedTransportSizeInMb(conf, (Integer) this.settings.get("cassandra.thrift.framed.size_mb"));
+    }
+
     if (this.settings.containsKey("cassandra.inputPartitioner")) {
       ConfigHelper.setInputPartitioner(conf, (String) this.settings.get("cassandra.inputPartitioner"));
     } else {
